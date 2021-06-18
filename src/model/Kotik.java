@@ -1,13 +1,13 @@
 package model;
 
 /*TODO
-   -mark this package as model
-   - create 3 eat() methods (override)
-   -
+  - fix issues cat must loose energy
 */
 public class Kotik {
 
     private static int instanceCounter = 0;
+
+    // cat fullness in percent if 100 he is satiety and if 0 he is hungry
     private int satiety;
     private int prettiness;
     private String name;
@@ -90,6 +90,8 @@ public class Kotik {
     public boolean chaseMouse() {
         if (isSatiety()) {
             System.out.println("Cat is chasing a mouse");
+            satiety -= (int)(Math.random() * 25 + 1);
+//            System.out.println("Уровень сытости " + satiety);
             return true;
         }
         return false;
@@ -98,6 +100,8 @@ public class Kotik {
     public boolean play() {
         if (isSatiety()) {
             System.out.println("I'm playing.");
+            satiety -= (int)(Math.random() * 15 + 1);
+//            System.out.println("Уровень сытости " + satiety);
             return true;
         } else {
             System.out.println("I want eat");
@@ -108,6 +112,8 @@ public class Kotik {
     public boolean sleep() {
         if (isSatiety()) {
             System.out.println("I'm sleeping.");
+            satiety -= (int)(Math.random() * 10 + 1);
+//            System.out.println("Уровень сытости " + satiety);
             return true;
         } else {
             System.out.println("I want eat");
@@ -128,6 +134,8 @@ public class Kotik {
     public boolean useToilet() {
         if (isSatiety()) {
             System.out.println("Cat uses the toilet");
+            satiety -= 10 + (int)(Math.random() * 20 + 1);
+//            System.out.println("Уровень сытости " + satiety);
             return true;
         } else {
             System.out.println("I want eat");

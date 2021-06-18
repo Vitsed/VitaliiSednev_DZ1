@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
 
         Kotik one = new Kotik(5, "Barsik", 6, "Meow-meow");
-        one.eat(5);
+        one.eat(100, "Whiskas");
         System.out.println("Имя котика: " + one.getName() + " вес котика: " + one.getWeight());
         one.liveAnotherDay();
 
