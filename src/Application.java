@@ -1,6 +1,5 @@
-package com.vitsed.home.task1;
 
-import com.vitsed.home.task1.model.Kotik;
+import model.Kotik;
 
 public class Application {
 

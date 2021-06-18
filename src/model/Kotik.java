@@ -1,4 +1,4 @@
-package com.vitsed.home.task1.model;
+package model;
 
 /*TODO
    -mark this package as model
