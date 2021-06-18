@@ -7,7 +7,6 @@ public class Kotik {
 
     private static int instanceCounter = 0;
 
-    // cat fullness in percent if 100 he is satiety and if 0 he is hungry
     private int satiety;
     private int prettiness;
     private String name;
@@ -69,19 +68,39 @@ public class Kotik {
             int catDoThis = (int) (Math.random() * 5 + 1);
             switch (catDoThis) {
                 case 1:
-                    play();
+                    if (play()) {
+                        System.out.println("Cat is playing");
+                    } else {
+                        wantEat();
+                    }
                     break;
                 case 2:
-                    chaseMouse();
+                    if (chaseMouse()) {
+                        System.out.println("Cat is chasing a mouse");
+                    } else {
+                        wantEat();
+                    }
                     break;
                 case 3:
-                    sleep();
+                    if (sleep()) {
+                        System.out.println("Cat is sleeping");
+                    } else {
+                        wantEat();
+                    }
                     break;
                 case 4:
-                    sayMeow();
+                    if(sayMeow()) {
+                        System.out.println(this.getMeow());
+                    } else {
+                        wantEat();
+                    }
                     break;
                 case 5:
-                    useToilet();
+                    if (useToilet()) {
+                        System.out.println("Cat uses the toilet");
+                    } else {
+                        wantEat();
+                    }
                     break;
             }
         }
@@ -89,59 +108,47 @@ public class Kotik {
 
     public boolean chaseMouse() {
         if (isSatiety()) {
-            System.out.println("Cat is chasing a mouse");
-            satiety -= (int)(Math.random() * 25 + 1);
-//            System.out.println("Уровень сытости " + satiety);
+            satiety -= (int) (Math.random() * 25 + 1);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public boolean play() {
         if (isSatiety()) {
-            System.out.println("I'm playing.");
-            satiety -= (int)(Math.random() * 15 + 1);
-//            System.out.println("Уровень сытости " + satiety);
+            satiety -= (int) (Math.random() * 15 + 1);
             return true;
         } else {
-            System.out.println("I want eat");
+            return false;
         }
-        return false;
     }
 
     public boolean sleep() {
         if (isSatiety()) {
-            System.out.println("I'm sleeping.");
-            satiety -= (int)(Math.random() * 10 + 1);
-//            System.out.println("Уровень сытости " + satiety);
+            satiety -= (int) (Math.random() * 10 + 1);
             return true;
         } else {
-            System.out.println("I want eat");
+            return false;
         }
-        return false;
     }
 
     public boolean sayMeow() {
         if (isSatiety()) {
-            System.out.println(getMeow());
+            satiety -= 1;
             return true;
         } else {
-            System.out.println("I want eat");
+            return false;
         }
-        return false;
     }
 
     public boolean useToilet() {
         if (isSatiety()) {
-            System.out.println("Cat uses the toilet");
-            satiety -= 10 + (int)(Math.random() * 20 + 1);
-//            System.out.println("Уровень сытости " + satiety);
+            satiety -= 10 + (int) (Math.random() * 20 + 1);
             return true;
         } else {
-            System.out.println("I want eat");
+            return false;
         }
-        return false;
-
     }
 
     public void eat(int satietyIndex, String food) {
@@ -154,10 +161,16 @@ public class Kotik {
     }
 
     public void eat() {
-        eat(0, "Food");
+        int satietyIndex = 5 + (int) (Math.random() * 15 + 1);
+        eat(satietyIndex, "Food");
     }
 
     private boolean isSatiety() {
         return satiety > 0;
+    }
+
+    private void wantEat() {
+        System.out.println("I want eat");
+        eat();
     }
 }
